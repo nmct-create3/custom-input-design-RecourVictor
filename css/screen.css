@@ -80,6 +80,9 @@
     --global-transition: 0.5s ease;
 }
 
+
+
+
 /*---------------------------------------/*
  # GENERIC
 /*---------------------------------------*/
@@ -721,8 +724,129 @@ input::placeholder {
 }
 
 /*
-    Component: Custom Options
+    Component: Toggle
 */
+
+.c-option--hidden:checked + .c-custom-toggle {
+    & .c-custom-toggle__fake-input::after {
+        /* right: 0; */
+        transform: translateX(25px);
+    }
+    & .c-custom-toggle__fake-input{
+        --global-color-neutral-050: var(--global-color-primary-500);
+        --global-input-borderColor: var(--global-color-primary-600);
+    }
+}
+
+.c-custom-toggle{
+    display: flex;
+    align-items: center;
+    &:focus,
+    &:active{
+        & .c-custom-toggle__fake-input{
+            --global-input-borderColor: var(--global-input-focus-borderColor);
+            box-shadow: 0 0 0 3px var(--global-input-focus-boxShadow);
+        }
+    }
+}
+
+.c-custom-toggle__fake-input{
+    position: relative;
+    display: block;
+    width: var(--global-whitespace-xl);
+    height: var(--global-whitespace);
+    background-color: var(--global-color-neutral-050);
+    border-radius: var(--global-whitespace);
+    border: var(--global-borderWidth) solid var(--global-input-borderColor);
+    margin-right: var(--global-whitespace-sm);
+    transition: all var(--global-transition);
+}
+
+.c-custom-toggle__fake-input::after{
+    background-color: var(--global-input-backgroundColor);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: calc(var(--global-whitespace) - 2px);
+    height: calc(var(--global-whitespace) - 2px);
+    position: absolute;
+    border-radius: 50px;
+    content: "";
+    transition: all var(--global-transition);
+}
+
+.c-option--hidden:active + .c-custom-toggle .c-custom-toggle__fake-input::after {
+    width: calc(var(--global-whitespace) + 0.5rem);
+}
+.c-option--hidden:active:checked + .c-custom-toggle .c-custom-toggle__fake-input::after {
+    width: calc(var(--global-whitespace) + 0.5rem);
+    transform: translateX(14px);
+}
+
+.c-custom-toggle--inverted{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.c-custom-toggle-list__item{
+    border-top: var(--global-borderWidth) solid var(--global-input-borderColor);
+    padding: 1rem 0;
+    &:first-child{
+        border: none;
+        padding: 0;
+        padding-bottom: 1rem;
+    }
+}
+
+/*
+    Component: Custom select
+*/
+.c-custom-select{
+    display: block;
+    position: relative;
+}
+
+.c-custom-select__symbol{
+    pointer-events: none;
+    position: absolute;
+    right: 0.75rem;
+    top: calc(50% - 0.75rem);
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: var(--global-color-neutral-300);
+}
+
+/*
+    Component: Password
+*/
+.c-password-toggle__checkbox:checked + .c-password-toggle__label{
+    & .c-password-toggle__symbol--show{
+        display: none;
+    }
+    & .c-password-toggle__symbol--hide{
+        display: block;
+    }
+}
+/* .c-password-toggle__symbol--show{
+    /* display: none; */
+
+.c-password-toggle__symbol--hide{
+    display: none;
+}
+
+.c-password-toggle__label{
+    position: absolute;
+    right: 0.75rem;
+    top: calc(50% - 0.75rem);
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: var(--global-color-neutral-300);
+}
+
+.c-password-toggle-container{
+    position: relative;
+    display: block;
+}
+
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
