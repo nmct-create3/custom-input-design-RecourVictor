@@ -31,6 +31,8 @@
     --global-color-primary-500-alpha-75: hsl(var(--global-color-primary-500-hsl) / .75);
     --global-color-primary-500-alpha-30: hsl(var(--global-color-primary-500-hsl) / .3);
 
+    --global-color-card: white;
+
     --global-color-neutral-050: #F5F6FA;
     --global-color-neutral-100: #E2E3E7;
     --global-color-neutral-200: #caccd4;
@@ -80,6 +82,18 @@
     --global-transition: 0.5s ease;
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --global-color-neutral-050: #20223A;
+        --global-color-card: #35374D;
+        --global-input-backgroundColor: #20223A;
+        --global-input-borderColor: #20223A;
+        --global-input-hover-borderColor: var(--global-color-primary-500);
+        --global-input-color: #B5B6C0;
+        --global-color-neutral-950: white;
+        --global-color-neutral-800: #B5B6C0;
+    }
+}
 
 
 
@@ -473,6 +487,12 @@ input::placeholder {
     Website main logo
 */
 
+@media (prefers-color-scheme: dark) {
+    .c-logo__path {
+      fill: white !important;
+    }
+}
+
 .c-logo {
     height: var(--global-whitespace);
     display: flex;
@@ -504,7 +524,7 @@ input::placeholder {
 */
 
 .c-card {
-    background-color: White;
+    background-color: var(--global-color-card);
     margin-bottom: var(--global-whitespace);
     border-radius: var(--global-borderRadius);
     box-shadow: 0 0 0 var(--global-borderWidth) rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, .075);
@@ -519,7 +539,7 @@ input::placeholder {
 
 .c-card__footer {
     text-align: center;
-    border-top: var(--global-borderWidth) solid var(--global-color-neutral-100);
+    border-top: var(--global-borderWidth) solid var(--global-input-borderColor);
 }
 
 .c-card__title {
@@ -702,6 +722,9 @@ input::placeholder {
     height: 1rem;
     border: var(--global-borderWidth) solid var(--global-input-borderColor);
     margin-right: var(--global-whitespace-sm);
+    @media (prefers-color-scheme: dark) {
+        background-color: var(--global-color-neutral-050);
+    }
 }
 
 .c-custom-option__fake-input--checkbox{
